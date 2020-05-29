@@ -9,15 +9,10 @@ services:
      - 443:443
    volumes:
      - ./nginx/certs:/etc/nginx/certs
-     - /var/run/docker.sock:/tmp/docker.sock:ro
+     - /var/run/docker.sock:/tmp/docker.sock
    environment:
      - DEFAULT_HOST=${DEFAULT_HOST}
    restart: always
- dind:
-   image: docker/dind
-   container_name: jenkins_docker
-   volumes:
-     - jenkins-data:/var/jenkins_home
  jenkins:
    image: jenkinsci/blueocean
    container_name: jenkins
