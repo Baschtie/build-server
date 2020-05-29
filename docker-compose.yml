@@ -1,0 +1,30 @@
+version: "3.8"
+
+  services:
+   nginx:
+     image: jwilder/nginx-proxy
+     container_name: nginx
+     ports:
+       - 80:80
+       - 443:443
+     volumes:
+       - ./nginx/certs:/etc/nginx/certs
+       - /var/run/docker.sock:/tmp/docker.sock:ro
+     environment:
+       - DEFAULT_HOST=${DEFAULT_HOST}
+     restart: always
+   jenkins:
+     image: jenkinsci/blueocean
+     container_name: jenkins
+     ports:
+       - 8080:8080
+       - 5000:5000
+     volumes:
+       - jenkins-data:/var/jenkins_home
+       - /var/run/docker.sock:/var/run/docker.sock
+     environment:
+       - VIRTUAL_HOST=${JENKINS_HOST}
+       - VIRTUAL_PORT=8080
+     restart: always
+ volumes:
+   jenkins-data:
