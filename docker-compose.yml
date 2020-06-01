@@ -17,7 +17,6 @@ services:
     image: jenkinsci/blueocean
     depends_on:
       - nginx
-      - docker
     container_name: jenkins
     ports:
       - 8080:8080
