@@ -14,10 +14,11 @@ services:
       - DEFAULT_HOST=${DEFAULT_HOST}
     restart: always
   jenkins:
-    image: jenkinsci/blueocean
+    image: jenkinsci/blueocean:latest
     depends_on:
       - nginx
     container_name: jenkins
+    user: root
     ports:
       - 127.0.0.1:8080:8080
       - 127.0.0.1:5000:5000
