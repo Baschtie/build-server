@@ -13,18 +13,10 @@ services:
     environment:
       - DEFAULT_HOST=${DEFAULT_HOST}
     restart: always
-  dind:
-    image: docker
-    container_name: dind
-    environment:
-      - VIRTUAL_HOST=${DIND_HOST}
-    restart: always
-    #privileged: true
   jenkins:
     image: jenkinsci/blueocean:latest
     depends_on:
       - nginx
-      - dind
     container_name: jenkins
     user: root
     ports:
