@@ -14,7 +14,7 @@ services:
       - DEFAULT_HOST=${DEFAULT_HOST}
     restart: always
   jenkins:
-    image: jenkinsci/blueocean
+    image: jenkins/jenkins:lts
     depends_on:
       - nginx
     container_name: jenkins
